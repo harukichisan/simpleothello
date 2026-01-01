@@ -1,0 +1,13 @@
+---
+alwaysApply: true
+---
+
+# Tests-first rules
+
+- For any behavior change, create/update tests first.
+- Add negative tests for:
+  - unauthorized (401)
+  - forbidden (403)
+  - invalid input (400)
+- Prefer deterministic tests unless necessary.
+- If tests fail: explain briefly, fix, re-run.

@@ -1,0 +1,23 @@
+---
+alwaysApply: true
+---
+
+# Canonical Commands Gate
+
+Use ONLY commands defined in @docs/project-config.md.
+
+Minimum set per PR:
+- Install
+- Lint
+- Typecheck (if applicable)
+- Test
+- Build
+
+If API exists:
+- OpenAPI validate command
+
+If schemas exist:
+- JSON Schema validate command
+
+If Supabase used:
+- Ensure access control tests exist for owner-only / role-based behavior.

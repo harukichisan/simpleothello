@@ -1,0 +1,13 @@
+---
+alwaysApply: true
+---
+
+# Spec-first workflow (mandatory order)
+
+1) Update @docs/spec.md
+2) Update @docs/security.md if auth/authorization changes
+3) Update @schemas/ if boundary data changed
+4) Update @api/openapi.yaml if API contract changed (if present)
+5) Write/Update tests
+6) Implement code
+7) Run validations until all green

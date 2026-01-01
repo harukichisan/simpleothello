@@ -1,0 +1,25 @@
+---
+alwaysApply: true
+---
+
+# Operating System (Non-negotiables)
+
+Single source of truth:
+- @docs/spec.md
+- @docs/security.md
+- @docs/project-config.md
+- @schemas/
+- @api/openapi.yaml (if present)
+
+Before making changes, you MUST:
+1) Propose a plan
+2) List files to change
+3) Specify exact validation commands (from docs/project-config.md)
+
+Constraints:
+- Keep each iteration small (<= 5 files touched).
+- Do not add new libraries unless explicitly requested.
+- If behavior changes: update spec/schema/contract FIRST, then tests, then implementation.
+
+Completion:
+- Never claim "done" without listing the commands to run and expected results.

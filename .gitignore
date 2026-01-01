@@ -1,0 +1,27 @@
+# OS / Editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Logs
+*.log
+
+# Env
+.env
+.env.*.local
+
+# Build outputs (generic)
+dist/
+build/
+out/
+coverage/
+
+# Node (if used)
+node_modules/
+
+# Python (if used)
+__pycache__/
+.venv/
+venv/
+*.pyc

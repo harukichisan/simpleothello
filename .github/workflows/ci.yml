@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  template_sanity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify required files
+        run: |
+          test -f README.md
+          test -f TEMPLATE-INSTALL.md
+          test -f docs/spec.md
+          test -f docs/security.md
+          test -f docs/project-config.md
+          test -d schemas
+          test -d tests
+          test -d .cursor/rules
+          test -f .cursor/rules/00-os.mdc
+          test -f .cursor/rules/10-spec-first.mdc
+          test -f .cursor/rules/20-tests-first.mdc
+          test -f .cursor/rules/90-commands.mdc
+
+      - name: Show project-config (for PR review)
+        run: |
+          echo "----- docs/project-config.md -----"
+          cat docs/project-config.md
