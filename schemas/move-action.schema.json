@@ -1,0 +1,24 @@
+{
+  "$id": "https://example.com/schemas/move-action.schema.json",
+  "title": "MoveAction",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "row": { "type": "integer", "minimum": 0, "maximum": 7 },
+    "col": { "type": "integer", "minimum": 0, "maximum": 7 },
+    "player": { "type": "string", "enum": ["black", "white"] }
+  },
+  "required": ["row", "col", "player"]
+}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harukichisan.github.io/simpleothello/schemas/move-action.schema.json",
+  "title": "MoveAction",
+  "type": "object",
+  "required": ["row", "col"],
+  "properties": {
+    "row": { "type": "integer", "minimum": 0, "maximum": 7 },
+    "col": { "type": "integer", "minimum": 0, "maximum": 7 }
+  },
+  "additionalProperties": false
+}

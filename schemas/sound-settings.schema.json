@@ -1,0 +1,22 @@
+{
+  "$id": "https://example.com/schemas/sound-settings.schema.json",
+  "title": "SoundSettings",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "soundEnabled": { "type": "boolean" }
+  },
+  "required": ["soundEnabled"]
+}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harukichisan.github.io/simpleothello/schemas/sound-settings.schema.json",
+  "title": "SoundSettings",
+  "type": "object",
+  "required": ["soundEnabled"],
+  "properties": {
+    "soundEnabled": { "type": "boolean" },
+    "lastInteractionTimestamp": { "type": "integer", "minimum": 0 }
+  },
+  "additionalProperties": false
+}

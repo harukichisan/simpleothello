@@ -16,6 +16,7 @@ dist/
 build/
 out/
 coverage/
+.next/
 
 # Node (if used)
 node_modules/

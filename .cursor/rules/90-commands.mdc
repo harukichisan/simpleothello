@@ -7,17 +7,21 @@ alwaysApply: true
 Use ONLY commands defined in @docs/project-config.md.
 
 Minimum set per PR:
-- Install
-- Lint
-- Typecheck (if applicable)
-- Test
-- Build
+- Install (`npm install`)
+- Lint (`npm run lint`)
+- Typecheck (if applicable) (`npm run typecheck`)
+- Test (`npm run test`)
+- Build (`npm run build`)
+
+Additional commands referenced in `@docs/project-config.md`:
+- Dev (`npm run dev`)
+- E2E (optional) (`npm run test:e2e`)
 
 If API exists:
-- OpenAPI validate command
+- OpenAPI validate command (`npm run openapi:validate`)
 
 If schemas exist:
-- JSON Schema validate command
+- JSON Schema validate command (`npm run schema:validate`)
 
 If Supabase used:
 - Ensure access control tests exist for owner-only / role-based behavior.

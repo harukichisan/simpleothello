@@ -1,0 +1,136 @@
+{
+  "$id": "https://example.com/schemas/game-state.schema.json",
+  "title": "GameState",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "board": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {
+        "type": "array",
+        "minItems": 8,
+        "maxItems": 8,
+        "items": {
+          "type": "integer",
+          "enum": [0, 1, 2]
+        }
+      }
+    },
+    "turn": {
+      "type": "string",
+      "enum": ["black", "white"]
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["cpu", "local"]
+    },
+    "legalMoves": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/coord" }
+    },
+    "undoHistory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "board": { "$ref": "#/properties/board" },
+          "turn": { "$ref": "#/properties/turn" },
+          "mode": { "$ref": "#/properties/mode" },
+          "legalMoves": { "$ref": "#/properties/legalMoves" }
+        },
+        "required": ["board", "turn", "mode", "legalMoves"]
+      }
+    },
+    "gameOver": {
+      "type": "boolean"
+    },
+    "winner": {
+      "type": ["string", "null"],
+      "enum": ["black", "white", "draw", null]
+    },
+    "soundEnabled": {
+      "type": "boolean"
+    }
+  },
+  "required": ["board", "turn", "mode", "legalMoves", "undoHistory", "gameOver", "winner", "soundEnabled"],
+  "$defs": {
+    "coord": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "row": { "type": "integer", "minimum": 0, "maximum": 7 },
+        "col": { "type": "integer", "minimum": 0, "maximum": 7 }
+      },
+      "required": ["row", "col"]
+    }
+  }
+}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harukichisan.github.io/simpleothello/schemas/game-state.schema.json",
+  "title": "GameState",
+  "type": "object",
+  "required": ["board", "currentPlayer", "legalMoves", "history", "mode", "moveCount"],
+  "properties": {
+    "board": { "$ref": "#/$defs/board" },
+    "currentPlayer": { "type": "string", "enum": ["black", "white"] },
+    "legalMoves": { "type": "array", "items": { "$ref": "#/$defs/moveOption" } },
+    "history": { "type": "array", "items": { "$ref": "#/$defs/historyEntry" } },
+    "mode": { "type": "string", "enum": ["cpu", "local"] },
+    "cpuDifficulty": { "type": "string", "enum": ["weak", "medium", "strong"] },
+    "moveCount": { "type": "integer", "minimum": 0 }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "disc": { "type": "string", "enum": ["empty", "black", "white"] },
+    "row": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/disc" },
+      "minItems": 8,
+      "maxItems": 8
+    },
+    "board": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/row" },
+      "minItems": 8,
+      "maxItems": 8
+    },
+    "cell": {
+      "type": "object",
+      "required": ["row", "col"],
+      "properties": {
+        "row": { "type": "integer", "minimum": 0, "maximum": 7 },
+        "col": { "type": "integer", "minimum": 0, "maximum": 7 }
+      },
+      "additionalProperties": false
+    },
+    "moveOption": {
+      "type": "object",
+      "required": ["position", "flips"],
+      "properties": {
+        "position": { "$ref": "#/$defs/cell" },
+        "flips": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/cell" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "historyEntry": {
+      "type": "object",
+      "required": ["board", "currentPlayer", "legalMoves", "actor", "moveCount"],
+      "properties": {
+        "board": { "$ref": "#/$defs/board" },
+        "currentPlayer": { "type": "string", "enum": ["black", "white"] },
+        "legalMoves": { "type": "array", "items": { "$ref": "#/$defs/moveOption" } },
+        "lastMove": { "anyOf": [{ "$ref": "#/$defs/moveOption" }, { "type": "null" }] },
+        "actor": { "type": "string", "enum": ["player", "cpu", "system"] },
+        "moveCount": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    }
+  }
+}

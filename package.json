@@ -1,0 +1,35 @@
+{
+  "name": "simpleothello",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Browser-first, rules-accurate Othello game logic library",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "lint": "next lint && eslint \"tests/**/*.{ts,tsx}\"",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "build": "next build",
+    "test:e2e": "vitest run tests/e2e",
+    "openapi:validate": "node scripts/validate-openapi.js",
+    "schema:validate": "node scripts/validate-schemas.js"
+  },
+  "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "ajv": "^8.13.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.0.0",
+    "typescript": "^5.3.4",
+    "vitest": "^4.0.16",
+    "yaml": "^2.3.1"
+  }
+}
