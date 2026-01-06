@@ -1,13 +1,3 @@
-import { Coord, Disc, Difficulty, Player } from "./types";
-
-export function selectMove(
-  _board: Disc[][],
-  _player: Player,
-  _difficulty: Difficulty,
-  _legalMoves: Coord[]
-): Coord | null {
-  throw new Error("Not implemented");
-}
 import { Board, Difficulty, MoveOption, Player } from './types';
 import {
   applyMove,

@@ -1,21 +1,4 @@
-import { Coord, Difficulty, GameState, Player } from "./types";
-
-export function createInitialState(_difficulty: Difficulty): GameState {
-  throw new Error("Not implemented");
-}
-
-export function applyPlayerMove(_state: GameState, _coord: Coord): GameState {
-  throw new Error("Not implemented");
-}
-
-export function undoLastPair(_state: GameState): GameState {
-  throw new Error("Not implemented");
-}
-
-export function restartGame(_state: GameState): GameState {
-  throw new Error("Not implemented");
-}
-import { Board, CellPosition, Difficulty, GameMode, MoveOption, SoundSettings, Actor, Player } from './types';
+import { Board, CellPosition, Difficulty, GameMode, MoveOption, SoundSettings, Actor, Player, GameState } from './types';
 import {
   applyMove,
   cloneBoard,
@@ -41,19 +24,6 @@ export interface GameSessionOptions {
   difficulty?: Difficulty;
   soundSettings?: SoundSettings;
   cpuMoveResolver?: (board: Board, difficulty: Difficulty, player: Player) => MoveOption | null;
-}
-
-export interface GameState {
-  board: Board;
-  currentPlayer: Player;
-  legalMoves: MoveOption[];
-  moveCount: number;
-  gameOver: boolean;
-  winner: Player | 'draw' | null;
-  historyLength: number;
-  soundSettings: SoundSettings;
-  mode: GameMode;
-  cpuDifficulty: Difficulty;
 }
 
 export interface MoveResult {
@@ -128,9 +98,6 @@ export class GameSession {
 
     if (this.mode === 'cpu' && this.currentPlayer !== 'black') {
       return { success: false, message: 'It is not the player turn.' };
-    }
-    if (this.gameOver) {
-      return { success: false, message: 'No legal moves remain.' };
     }
 
     const target = this.findMove(position);

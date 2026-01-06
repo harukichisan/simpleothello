@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Board from "@/components/Board";
 import Controls from "@/components/Controls";
@@ -31,7 +31,7 @@ const initialLegalMoves: Coord[] = [
 
 const storageKey = "simpleothello-sound";
 
-export default function GamePage() {
+function GameContent() {
   const searchParams = useSearchParams();
   const difficultyParam = searchParams.get("difficulty");
   const knownDifficulties: Difficulty[] = ["weak", "medium", "strong"];
@@ -127,25 +127,32 @@ export default function GamePage() {
   };
 
   return (
-    <main className="page-shell">
-      <section className="game-panel">
-        <HUD
-          turn={turn}
-          blackScore={blackScore}
-          whiteScore={whiteScore}
-          status={status}
-          difficulty={difficulty}
-          mode={mode}
-        />
-        <Board board={board} legalMoves={legalMoves} onCellClick={handleMove} />
-        <Controls
-          onUndo={handleUndo}
-          onRestart={handleRestart}
-          soundEnabled={soundEnabled}
-          onToggleSound={handleToggleSound}
-        />
-      </section>
-    </main>
+    <section className="game-panel">
+      <HUD
+        turn={turn}
+        blackScore={blackScore}
+        whiteScore={whiteScore}
+        status={status}
+        difficulty={difficulty}
+        mode={mode}
+      />
+      <Board board={board} legalMoves={legalMoves} onCellClick={handleMove} />
+      <Controls
+        onUndo={handleUndo}
+        onRestart={handleRestart}
+        soundEnabled={soundEnabled}
+        onToggleSound={handleToggleSound}
+      />
+    </section>
   );
 }
 
+export default function GamePage() {
+  return (
+    <main className="page-shell">
+      <Suspense fallback={<div>Loading game...</div>}>
+        <GameContent />
+      </Suspense>
+    </main>
+  );
+}

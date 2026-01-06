@@ -1,27 +1,3 @@
-export type Disc = "empty" | "black" | "white";
-export type Player = "black" | "white";
-export type Difficulty = "weak" | "medium" | "strong";
-
-export interface Coord {
-  row: number;
-  col: number;
-}
-
-export interface GameState {
-  board: Disc[][];
-  turn: Player;
-  mode: "cpu" | "local";
-  legalMoves: Coord[];
-  undoHistory: Array<{
-    board: Disc[][];
-    turn: Player;
-    mode: "cpu" | "local";
-    legalMoves: Coord[];
-  }>;
-  gameOver: boolean;
-  winner: Player | "draw" | null;
-  soundEnabled: boolean;
-}
 export type Disc = 'empty' | 'black' | 'white';
 export type Player = 'black' | 'white';
 export type Difficulty = 'weak' | 'medium' | 'strong';
@@ -43,4 +19,22 @@ export type Board = Disc[][];
 export interface SoundSettings {
   soundEnabled: boolean;
   lastInteractionTimestamp?: number;
+}
+
+export interface GameState {
+  board: Board;
+  currentPlayer: Player;
+  legalMoves: MoveOption[];
+  moveCount: number;
+  gameOver: boolean;
+  winner: Player | 'draw' | null;
+  historyLength: number;
+  soundSettings: SoundSettings;
+  mode: GameMode;
+  cpuDifficulty: Difficulty;
+}
+
+export interface Coord {
+  row: number;
+  col: number;
 }

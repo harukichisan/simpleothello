@@ -1,28 +1,3 @@
-import { Coord, Disc, Player } from "./types";
-
-export function initializeBoard(): Disc[][] {
-  throw new Error("Not implemented");
-}
-
-export function getLegalMoves(_board: Disc[][], _player: Player): Coord[] {
-  throw new Error("Not implemented");
-}
-
-export function applyMove(
-  _board: Disc[][],
-  _player: Player,
-  _coord: Coord
-): { board: Disc[][]; nextPlayer: Player } {
-  throw new Error("Not implemented");
-}
-
-export function isGameOver(_board: Disc[][], _legalMoves: Coord[], _passes: number): boolean {
-  throw new Error("Not implemented");
-}
-
-export function countDiscs(_board: Disc[][]): { black: number; white: number } {
-  throw new Error("Not implemented");
-}
 import { Board, CellPosition, Disc, MoveOption, Player } from './types';
 
 export const BOARD_SIZE = 8;
